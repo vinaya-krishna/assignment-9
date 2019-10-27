@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vecta Corp. - 24/7 365 turnkey vSolutions for agile eBusinesses</title>
+  <link href="styles/normalize.css" type="text/css" rel="stylesheet">
+  <link href="styles/styles.css" type="text/css" rel="stylesheet">
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script>
+	 $("document").ready(() => {
+
+		//16
+		createButton(1);
+
+		$("#button-1").click(function(){
+			alert("Button clicked!")
+		});
+
+		//17
+		createButton(2);
+
+		$("#button-2").bind("click", function(){
+			alert("Button clicked!")
+		});
+
+		//18
+		createButton(3);
+
+		$("#button-3").on("click", function(){
+			alert("Button clicked!")
+		});
+
+		//19
+		createButton(4);
+		createButton(5);
+
+		$("#button-5, #button-4").on("click", function(){
+			alert("Button clicked!")
+		});
+
+		function createButton(count) {
+                $("body").append(`<button id=\'button-${count}'\> Button ${count}</button><br/>`)
+                $(`#button-${count}`).css({
+                    "margin": "10px 0 10px 0"
+                })
+        }
+
+		//20
+		let div_css = document.createElement("div");
+		div_css.setAttribute("id","div_css");
+		$("body").append(div_css);
+		$("#div_css").css({
+                "width": "400px",
+                "height": "400px",
+                "background-color": "blue",
+            })
+
+
+
+		//21
+
+		let span = document.createElement("span") 
+		span.setAttribute('id','span_element')
+		span.textContent = "Span Added!"
+		$("body").append(span);
+
+
+		$("#div_css").on({
+			mouseenter: function() {
+				alert("Mouse entered!");
+				$("#span_element").text("Mouse entered!");
+			},
+			mouseleave: function() {
+				alert("Mouse left!");
+				$("#span_element").text("Mouse left!");
+			},
+			click: function() {
+				alert("Clicked!");
+				$("#span_element").text("Clicked!");
+			}
+		});
+
+
+		//22
+		let link = document.createElement("a")
+		link.setAttribute("href","https://www.modulemedia.com") 
+		link.setAttribute("id","media_link") 
+		link.textContent = "Module Media"
+		$("body").append(link,"<br/><br/>")
+		$("#media_link").on('click', (event) => {
+				event.preventDefault();
+				$("#media_link").css({
+					"color" : "red",
+				})
+				alert(event.target);
+		});
+
+		//23
+
+		let div_window_size = document.createElement("div")
+		div_window_size.setAttribute("id","window_size")
+		div_window_size.innerHTML = `Width : ${$(window).width()}px <br/> Height : ${$(window).height()}px`
+
+		$("body").append(div_window_size,"<br/><br/>")
+
+		$(window).resize(function () {
+			$("#window_size").text(`Width: ${$(window).width()} Height: ${$(window).height()}`)
+		})  
+
+		//24
+
+		let textfield = document.createElement("input")
+		textfield.setAttribute('id',"focus_test")
+		$("body").append(textfield,"<br/><br/>")
+
+		$("#focus_test").focusin(() => {
+			$("#focus_test").css({
+				"background-color" : "lightgray"
+			})
+		})
+
+		$("#focus_test").focusout(() => {
+			$("#focus_test").css({
+				"background-color" : "white"
+			})
+		})
+
+
+		
+		//25
+
+		let form = document.createElement("form")
+		form.setAttribute("id","form-test")
+
+		let nameInput = document.createElement("input")
+		nameInput.setAttribute('id','name')
+		nameInput.placeholder = "Enter Name"
+		nameInput.setAttribute('style','display:block;margin-top: 20px')
+
+		form.appendChild(nameInput)
+
+		let emailInput = document.createElement("input")
+		emailInput.setAttribute('id','email')
+		emailInput.placeholder = "Enter Email"
+		emailInput.setAttribute('style','display:block; margin-top: 20px')
+
+		form.appendChild(emailInput)
+
+		let submit = document.createElement("button")
+		submit.textContent = "Submit"
+		submit.setAttribute('id','submit')
+		submit.setAttribute('style','display:block;margin-top: 20px')
+
+		form.appendChild(submit)
+		$("body").append(form,"<br/><br/>")
+
+
+		$("#form-test").on("submit",(event)=>{
+				event.preventDefault();
+                let error_css = {
+                    "border" : "1.5px solid red"
+                } , success_css = {
+                    "border" : "1.5px solid green"
+                }
+            
+                var validInput = true
+                var errorMessage = ""
+                
+                for(let input of [$("#name"),$("#email")]){
+					if(input.val() == "")
+					{
+						validInput = false
+						input.css(error_css)
+						errorMessage += ` Required Field. Please enter ${input.attr('placeholder')} \n`
+					}else{
+						input.css(success_css)
+					}
+					
+					if(validInput == false)
+						alert(errorMessage)
+				}
+            })
+	 });
+  </script>
+
+</head>
+
+<body>
+	<main>
+		<header></header>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About Us</a></li>
+				<li><a href="#">Solutions</a></li>
+				<li><a href="#">Support</a></li>
+				<li><a href="#">Contact Us</a></li>
+			</ul>
+		</nav>
+		<section>
+			<h2>Welcome</h2>
+
+			<p>With innovative approaches and advanced methodologies, <b>Vecta Corporation</b> provides scalable business solutions to help companies achieve success through revenue increase, cost management, and user satisfaction. Our approach stems from the three most important business growth aspects: helping companies reach prospects, assist in converting prospects to customers, and assist in retaining those customers. This is accomplished through our interactive solutions and expertise in providing a memorable and positive user experience.</p>
+			
+			<h2>Our Solutions</h2> 
+			
+			<p class="vprospect">vProspect 2.0<br>
+			Define and research your target audience, define your strategy to reach that audience and present a strong and memorable brand to that audience.</p>
+			
+			<p class="vconvert">vConvert 2.0<br>
+			Create a highly user-friendly and easy-to-navigate information architecture that will help your prospects interact with the company on a highly interactive level.</p>
+			
+			<p class="vretain">vRetain 1.0<br>
+			Build on existing customer relationships to improve productivity and maximize customer loyalty, while growing revenues.</p>
+		</section>
+		<aside>
+			<h2>Client Testimonials</h2>
+			
+			<p>Throughout the years we have worked with Vecta Corporation, we have always been amazed at the level of dedication and professionalism that they have provided us and our WGDC products. It is this commitment that has increased both our income and exposure exponentially.</p>
+			
+			<p>Iona Ford<br>
+			President</p>
+		</aside>
+		<footer></footer>
+	</main>
+</body>
+</html>
